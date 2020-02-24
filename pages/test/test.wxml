@@ -1,0 +1,10 @@
+<block wx:if="{{canvasType}}">
+  <view show="{{ canvasType }}" bind:click-overlay="onClickOverlay" custom-style="width:90%;height: 450px;">
+    <canvas class='canvas' canvas-id="mycanvas" />
+    <view bindtap="saveImg" type="success" long="true">
+      保存到本地相册</view>
+  </view>
+</block>
+<block wx:else>
+  <button class="foot-full-button" bindtap='creatQrcodePictures'>生成海报分享图片</button>
+</block>
