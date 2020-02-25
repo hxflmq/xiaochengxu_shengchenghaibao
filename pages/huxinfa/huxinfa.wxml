@@ -1,0 +1,57 @@
+
+<view class="container">
+<!-- 商品分类 -->
+<view id="good_tops_classtp">
+<view id="tab_conts">
+  <text class="{{ showTactive_tab == 1 ? 'active_tab' : ''}}" bindtap="switchTab_tab" data-index='1' id="yn_cok">综合排序</text>
+  <text class="{{ showTactive_tab ==2 ? 'active_tab' : ''}}" bindtap="switchTab_tab" data-index='2' id="yn_cok">高佣金比</text>
+  <text class="{{ showTactive_tab == 3 ? 'active_tab' : ''}}" bindtap="switchTab_tab" data-index='3' id="yn_cok">销量</text>
+</view>
+<view id="goods_typel">
+ <view wx:for="{{floorGoods}}" id="goo_ds">
+                <view class="navbox"  class=''>
+            <navigator url="../goods/goods?id={{item.id}}" class="a"  hover-class="none">
+                    <image class="all_img" src="{{item.picUrl}}"></image>
+                    <view id="text_op_il">
+                    <view id="ziyin" wx:if="{{item.goodsIcon}}">{{item.goodsIcon}}</view>
+                     <view style="display:inline-blcok;color:#413D3C; overflow: hidden;text-overflow:ellipsis;white-space:nowrap;width:480rpx;margin-bottom:5rpx;margin-left:91rpx"  wx:if="{{item.goodsIcon}}">{{item.name}}</view>
+                    <view style="display:inline-blcok;color:#413D3C; overflow: hidden;text-overflow:ellipsis;white-space:nowrap;width:480rpx;margin-bottom:5rpx;"  wx:else>{{item.name}}</view>
+                    <view id="shizio" wx:if="{{item.goodsLabels}}">{{item.goodsLabels}}</view>
+                    <view style="margin-top:26rpx">
+                    <text style="color: #E82F2F;">￥</text>
+                    <text style="color: #E82F2F;font-size:38rpx">{{item.price}}</text>
+                    <text style="color: #B3B3B3;font-size:26rpx;text-decoration: line-through;margin-top:10rox;margin-left:8rpx;display:inline-block" wx:if="{{item.originPrice}}">￥{{item.originPrice}}</text>
+                    </view>
+                    </view>
+                </navigator>
+                <view id="haha">
+                  <image src="../../static/youpic/zan.png" id="zamk"></image>
+                  <text>{{item.wellCommentsPct}}%</text>
+                   <image src="../../static/youpic/pinglun.png" id="zamk"></image>
+                  <text>{{item.commentCounts}}</text>
+                </view>
+                </view>
+                <view class="shaer_om" catchtap='creatQrcodePictures' data-gooddetail="{{item}}">
+                返现赚￥{{item.rebateProfit}}
+                </view>
+             </view>
+</view>
+<!-- 生成二维码 -->
+<!-- 蒙版 -->
+<view id="make_model" hidden="{{ismeke_model}}">
+<!-- 取消 -->
+<image src="../../static/youpic/cha.svg" id="cha" bindtap="close_moke"></image>
+<view id="inde_canvas">
+<block wx:if="{{canvasType}}">
+  <view show="{{ canvasType }}" bind:click-overlay="onClickOverlay" custom-style="width:90%;height: 450px;">
+    <canvas class='canvas' canvas-id="mycanvas" />
+    <view type="success" long="true" id="btms_save">
+      <text id="save_img"  bindtap="saveImg">保存到本地相册</text> 
+      <button open-type="share" id="send_wx">发给微信好友</button>
+      </view>
+  </view>
+</block>
+</view>
+</view>
+      </view>
+</view>
